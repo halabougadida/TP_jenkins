@@ -4,7 +4,7 @@ options {timestamps()}
 stages {
 stage('Cloner le dépôt'){
 steps {
-git url: 'https://github.com/halabougadida/TP_jenkins.git', branch: 'main'
+git url: 'https://github.com/halabougadida/TP_jenkins.git', branch: '1erpush'
 }
 }
 stage('Étape 1 : Vérification du dépôt'){
