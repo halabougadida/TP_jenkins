@@ -35,3 +35,5 @@ bat 'echo SUCCESS'
 post {
 success { echo ' Build OK'}
 failure { echo ' Build KO' }
+}
+}
