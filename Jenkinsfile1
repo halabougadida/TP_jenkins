@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+       stage('Build') {
+            steps {
+                echo '=== Build ==='
+                sh '''
+                    test -f index.html
+                    test -f index.css
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo '=== Test ==='
+                sh 'grep -qi "<html" index.html'
+                sh 'grep -qi "<h1" index.css'
+                echo 'All tests passed!'
+            }
+        }
+
+        // 4. DELIVERY
+        stage('Delivery') {
+            steps {
+                echo '=== Delivery ==='
+                archiveArtifacts artifacts: 'website.zip,index.html,index.css',
+                                 fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'PIPELINE SUCCESS!'
+        }
+        failure {
+            echo 'PIPELINE FAILED!'
+        }
+    }
+}
