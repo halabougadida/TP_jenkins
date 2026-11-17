@@ -1,0 +1,11 @@
+services:
+web:
+image: hala0w0/monapp:latest
+ports:
+- "8283:80"
+restart: unless-stopped
+Commandes:
+docker compose pull
+docker compose up -d
+docker ps
+# http://STAGING_HOST:8283
